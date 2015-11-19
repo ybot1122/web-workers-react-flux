@@ -1,0 +1,6 @@
+{
+  "name": "react-flux-store-examples",
+  "dependencies": {
+    "react": "*"
+  }
+}
