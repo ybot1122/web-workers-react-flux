@@ -4,6 +4,8 @@
   -- for now just a bunch of async routines with artifical delays
 **/
 
+'use strict';
+
 module.exports = {
   getFakeWeather() {
     const fakeResult = {
