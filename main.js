@@ -33,6 +33,13 @@ class ClockStoreDef extends Store {
 
 const ClockStore = new ClockStoreDef();
 
+const News = React.createClass({
+  componentWillMount: function() {
+    Dispatcher.dispatch(ActionTypes.REQUEST_NEWS, {});
+    this.
+  }
+});
+
 const MainElement = React.createClass({
   _counter: function() {
     Dispatcher.dispatch(ActionTypes.UPDATE_CLOCK, this.state.time + 1);

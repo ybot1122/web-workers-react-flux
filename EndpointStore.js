@@ -10,6 +10,7 @@ const ActionTypes = require('./ActionTypes.js');
 
 class EndpointStore extends Store {
   contructor() {
+    // maybe should store objects which status AND data
     this.inProgress =  {};
   }
 
@@ -19,10 +20,10 @@ class EndpointStore extends Store {
       case ActionTypes.REQUEST_WEATHER:
       case ActionTypes.REQUEST_NEWS:
         EndpointStore.inProgress[actionType] = 1;
-        ServiceCalls.getFakeNews().then(function() {
+        ServiceCalls.getFakeNews().then(function(val) {
           EndpointStore.inProgress[actionType] = 2;
           EndpointStore._emitChange();
-        }).catch(function() {
+        }).catch(function(reason) {
           EndpointStore.inProgress[actionType] = 0;
           EndpointStore._emitChange();
         });

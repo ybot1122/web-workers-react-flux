@@ -35,7 +35,7 @@ module.exports = {
     return new Promise(function(resolve, reject) {
       window.setTimeout(function() {
         reject('rejected, lets just stay friends');
-      }, 3000);
+      }, 7000);
     });
   }
 }
