@@ -8,29 +8,7 @@ const Dispatcher = require('./Dispatcher.js');
 const Store = require('./Store.js');
 const ActionTypes = require('./ActionTypes');
 
-class ClockStoreDef extends Store {
-  constructor() {
-    super();
-    this.time = 0;
-  }
-
-  _onDispatch(actionType, payload) {
-    switch(actionType) {
-      case ActionTypes.UPDATE_CLOCK:
-        ClockStore.time = payload;
-        ClockStore._emitChange();
-        break;
-      default:
-        break;
-    }
-  }
-
-  getTime() {
-    return this.time;
-  }
-}
-
-const ClockStore = new ClockStoreDef();
+const ClockStore = require('ClockStore.js');
 
 const MainElement = React.createClass({
   _counter: function() {
