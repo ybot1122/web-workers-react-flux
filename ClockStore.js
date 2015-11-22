@@ -4,17 +4,23 @@
 
 'use strict';
 
+const Store = require('./Store.js');
+const ActionTypes = require('./ActionTypes');
+
+let self;
+
 class ClockStore extends Store {
   constructor() {
     super();
-    this.time = 0;
+    self = this;
+    self.time = 0;
   }
 
   _onDispatch(actionType, payload) {
     switch(actionType) {
       case ActionTypes.UPDATE_CLOCK:
-        ClockStore.time = payload;
-        ClockStore._emitChange();
+        self.time = payload;
+        self._emitChange();
         break;
       default:
         break;
@@ -22,7 +28,7 @@ class ClockStore extends Store {
   }
 
   getTime() {
-    return this.time;
+    return self.time;
   }
 }
 
