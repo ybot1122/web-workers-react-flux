@@ -6,7 +6,6 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const Dispatcher = require('./Dispatcher.js');
 const Store = require('./Store.js');
-const EndpointStore = require('./EndpointStore.js');
 const ActionTypes = require('./ActionTypes');
 
 class ClockStoreDef extends Store {
@@ -32,9 +31,6 @@ class ClockStoreDef extends Store {
 }
 
 const ClockStore = new ClockStoreDef();
-
-const News = React.createClass({
-});
 
 const MainElement = React.createClass({
   _counter: function() {
