@@ -15,6 +15,7 @@ class CurveStore extends Store {
   constructor() {
     super();
     self = this;
+    self._worker = new Worker("workers/curve_calculator.js");
     self._cache = {};
   }
 
@@ -30,9 +31,9 @@ class CurveStore extends Store {
     }
   }
 
-  getTime() {
-    return self.time;
+  getCalculation(id) {
+    return self._cache[id];
   }
 }
 
-module.exports = new ClockStore();
+module.exports = new CurveStore();

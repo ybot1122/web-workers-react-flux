@@ -8,6 +8,7 @@ const Dispatcher = require('./dispatchers/Dispatcher.js');
 const ActionTypes = require('./actions/ActionTypes');
 
 const ClockStore = require('./stores/ClockStore.js');
+const CurveStore = require('./stores/CurveStore.js');
 
 const MainElement = React.createClass({
   _counter: function() {
