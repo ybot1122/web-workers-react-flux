@@ -4,8 +4,8 @@
 
 'use strict';
 
-var EventEmitter = require('../EventEmitter.js');
-var Dispatcher = require('../Dispatcher.js');
+var EventEmitter = require('../emitters/EventEmitter.js');
+var Dispatcher = require('../dispatchers/Dispatcher.js');
 
 class Store {
   constructor() {

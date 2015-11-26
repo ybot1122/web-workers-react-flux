@@ -4,8 +4,8 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Dispatcher = require('./Dispatcher.js');
-const ActionTypes = require('./ActionTypes');
+const Dispatcher = require('./dispatchers/Dispatcher.js');
+const ActionTypes = require('./actions/ActionTypes');
 
 const ClockStore = require('./stores/ClockStore.js');
 

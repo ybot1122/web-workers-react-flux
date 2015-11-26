@@ -5,7 +5,7 @@
 'use strict';
 
 const Store = require('./Store.js');
-const ActionTypes = require('../ActionTypes');
+const ActionTypes = require('../actions/ActionTypes');
 
 let self;
 
