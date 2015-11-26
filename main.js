@@ -7,7 +7,7 @@ const ReactDOM = require('react-dom');
 const Dispatcher = require('./Dispatcher.js');
 const ActionTypes = require('./ActionTypes');
 
-const ClockStore = require('./ClockStore.js');
+const ClockStore = require('./stores/ClockStore.js');
 
 const MainElement = React.createClass({
   _counter: function() {
