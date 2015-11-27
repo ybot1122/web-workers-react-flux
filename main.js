@@ -21,6 +21,10 @@ const MainElement = React.createClass({
     });
   },
 
+  _curveCalculation: function() {
+    console.log(CurveStore.getCalculation('abc'));
+  },
+
   getInitialState: function() {
     return {
       time: ClockStore.getTime()
@@ -29,6 +33,10 @@ const MainElement = React.createClass({
 
   componentDidMount: function() {
     ClockStore.addListener(this._timeChange);
+    CurveStore.addListener(this._curveCalculation);
+    Dispatcher.dispatch(ActionTypes.CALCULATE_CURVE, {
+      id: 'abc'
+    });
     setInterval(this._counter, 1000);
   },
 
