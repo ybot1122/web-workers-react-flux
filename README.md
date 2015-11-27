@@ -3,3 +3,4 @@ Some sample patterns and implementations for implementing dispatchers and stores
 
 for now, build with:
 browserify -t [ babelify --presets [ react ] ] main.js > bundle.js
+browserify -t [ babelify --presets [ react ] ] workers/curve_calculator.js > workers/worker.js

@@ -2,24 +2,36 @@
     Worker that takes in an array of data and outputs an SVG path
 **/
 
-function calculateCurve(rawData) {
+'use strict';
+
+const d3 = require('./d3.min.js');
+
+function calculateMyCurve(rawData) {
     // parse data into an array of values
-    var data = [];
-    for (var i = 0; i < rawData.length; i++) {
-        data.push({
-            x: rawData[i].start_epoch_ms,
-            y: rawData[i].value
-        });
+    let data = [];
+    for (let i = 0; i < rawData.length; i++) {
+        data.push({x: i, y: rawData[i].value});
     }
-    return "Yoo hoo";
+
+    const line = d3.svg.line().interpolate('basis')
+        .x(function (d) {
+            return d.x
+        })
+        .y(function (d) {
+            return d.y
+        });
+
+    return line(data);
 }
 
 self.addEventListener('message', function(e) {
-    var data = e.data.stream;
-    var id = e.data.id;
-    var result = calculateCurve(data);
-    self.postMessage({
+    let data = JSON.parse(e.data);
+    let stream = data.stream;
+    let id = data.id;
+    let result = calculateMyCurve(stream);
+    let message = JSON.stringify({
         id: id,
         result: result
     });
+    self.postMessage(message);
 });

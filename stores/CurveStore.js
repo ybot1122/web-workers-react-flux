@@ -6,7 +6,7 @@
 
 'use strict';
 
-var FakeData = require('../fake_data.json');
+const FakeData = require('../fake_data.json');
 
 const Store = require('./Store.js');
 const ActionTypes = require('../actions/ActionTypes');
@@ -17,11 +17,11 @@ class CurveStore extends Store {
   constructor() {
     super();
     self = this;
-    self._worker = new Worker("workers/curve_calculator.js");
+    self._worker = new Worker("workers/worker.js");
     self._cache = {};
     // add listener to worker for receiving calcuations
     self._worker.addEventListener('message', function(e) {
-      var data = e.data;
+      var data = JSON.parse(e.data);
       var id = data.id;
       var result = data.result;
       self._cache[id] = result;
@@ -34,7 +34,7 @@ class CurveStore extends Store {
       case ActionTypes.CALCULATE_CURVE:
         delete self._cache[payload.id];
         // tell worker to calculate on action.data
-        self._worker.postMessage({'stream': FakeData, 'id': payload.id})
+        self._worker.postMessage(JSON.stringify({'stream': FakeData.values, 'id': payload.id}));
         self._emitChange();
         break;
       default:
