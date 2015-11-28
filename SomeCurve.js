@@ -3,6 +3,8 @@
   calculator store
 **/
 
+'use strict';
+
 const React = require('react');
 const Dispatcher = require('./dispatchers/Dispatcher.js');
 const ActionTypes = require('./actions/ActionTypes');
@@ -10,32 +12,41 @@ const CurveStore = require('./stores/CurveStore.js');
 
 const SomeCurve = React.createClass({
   getInitialState: function() {
-    return {curve: ''};
+    let curves = [];
+    for (let i = 0; i < 50; i++) {
+      curves.push('');
+    }
+    return {curves: curves};
   },
 
   _curveCalculation: function() {
-    const calcuation = CurveStore.getCalculation('abc') || '';
-    this.setState({curve: calcuation});
+    let len = this.state.curves.length;
+    let update = [];
+    for (let i = 0; i < len; i++) {
+      update.push(CurveStore.getCalculation(i) || '');
+    }
+    this.setState({curves: update});
   },
 
   componentDidMount: function() {
+    let len = this.state.curves.length;
     CurveStore.addListener(this._curveCalculation);
-    Dispatcher.dispatch(ActionTypes.CALCULATE_CURVE, {
-      id: 'abc'
-    });
+    for (let i = 0; i < len; i++) {
+      Dispatcher.dispatch(ActionTypes.CALCULATE_CURVE, {id: i});
+    }
   },
 
   render: function() {
-    return (
-      <div>
-        <h1>Some Curve</h1>
+    const len = this.state.curves.length;
+    let result = [];
+    for (let i = 0; i < len; i++) {
+      result.push((
         <svg
-          width="100%"
-          height="1000px"
-          viewBox="0 0 1000 200"
+          key={i}
+          viewBox="0 0 500 10"
           preserveAspectRatio="none">
           <g>
-            <path d={this.state.curve} style={
+            <path d={this.state.curves[i]} style={
                 {
                   stroke: 'url(#temperature-gradient)',
                   strokeWidth: 10
@@ -43,6 +54,12 @@ const SomeCurve = React.createClass({
               } />
           </g>
         </svg>
+      ));
+    }
+    return (
+      <div>
+        <h1>Some Curve</h1>
+        {result}
       </div>
     );
   }
