@@ -3,3 +3,5 @@ node_modules/
 bundle.js
 *.sublime-*
 workers/worker.js
+stores/CurveStore.js
+bundle.js
