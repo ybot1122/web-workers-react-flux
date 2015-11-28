@@ -17,7 +17,7 @@ let self;
 class CurveStore extends Store {
   constructor() {
     super();
-    console.log('USING ASYNC STORE');
+    console.log('USING SEQUENTIAL STORE');
     self = this;
     self._worker = new Worker("workers/worker.js");
     self._cache = {};
@@ -34,12 +34,7 @@ class CurveStore extends Store {
   _onDispatch(actionType, payload) {
     switch(actionType) {
       case ActionTypes.CALCULATE_CURVE:
-        setTimeout((function() {
-          return function() {
-            self._cache[payload.id] = Calculator.calculateMyCurve(FakeData.values);
-            self._emitChange();
-          };
-        })(), 0);
+        self._cache[payload.id] = Calculator.calculateMyCurve(FakeData.values);
         self._emitChange();
         break;
       default:

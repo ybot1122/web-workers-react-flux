@@ -10,14 +10,13 @@ const FakeData = require('../fake_data.json');
 
 const Store = require('./Store.js');
 const ActionTypes = require('../actions/ActionTypes');
-const Calculator = require('../workers/curve_calculator.js');
 
 let self;
 
 class CurveStore extends Store {
   constructor() {
     super();
-    console.log('USING ASYNC STORE');
+    console.log('USING THE WEBWORKER STORE');
     self = this;
     self._worker = new Worker("workers/worker.js");
     self._cache = {};
@@ -34,12 +33,9 @@ class CurveStore extends Store {
   _onDispatch(actionType, payload) {
     switch(actionType) {
       case ActionTypes.CALCULATE_CURVE:
-        setTimeout((function() {
-          return function() {
-            self._cache[payload.id] = Calculator.calculateMyCurve(FakeData.values);
-            self._emitChange();
-          };
-        })(), 0);
+        delete self._cache[payload.id];
+        // tell worker to calculate on action.data
+        self._worker.postMessage(JSON.stringify({'stream': FakeData.values, 'id': payload.id}));
         self._emitChange();
         break;
       default:
