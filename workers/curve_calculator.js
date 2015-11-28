@@ -6,6 +6,10 @@
 
 const d3 = require('./d3.min.js');
 
+/**
+    FISHER-YATES SHUFFLE
+    http://bost.ocks.org/mike/shuffle/
+**/
 function shuffle(array) {
     var counter = array.length, temp, index;
     // While there are elements in the array

@@ -5,6 +5,8 @@
 
 'use strict';
 
+const NUMBER_OF_CURVES = 200;
+
 const React = require('react');
 const Dispatcher = require('./dispatchers/Dispatcher.js');
 const ActionTypes = require('./actions/ActionTypes');
@@ -13,7 +15,7 @@ const CurveStore = require('./stores/CurveStore.js');
 const SomeCurve = React.createClass({
   getInitialState: function() {
     let curves = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < NUMBER_OF_CURVES; i++) {
       curves.push('');
     }
     return {curves: curves};
