@@ -18,7 +18,7 @@ class CurveStore extends Store {
     super();
     console.log('USING THE WEBWORKER STORE');
     self = this;
-    self._worker = new Worker("workers/worker.js");
+    self._worker = new Worker("./worker.js");
     self._cache = {};
     // add listener to worker for receiving calcuations
     self._worker.addEventListener('message', function(e) {
