@@ -5,3 +5,4 @@ bundle.js
 workers/worker.js
 stores/CurveStore.js
 bundle.js
+build/
