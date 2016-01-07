@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>React-Flux Web Workers Demo</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      section:first-child {
+        margin-top: 50px;
+      }
+
+      section {
+        width: 800px;
+        margin: 75px auto;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      h3 {
+        text-align: center;
+      }
+
+      p {
+      }
+    </style>
+  </head>
+
+  <body>
+   
+    <section>
+      <h1>React-Flux Web Workers Demo</h1>
+      <h3>a simplistic flux implementation for using web workers</h3>
+    </section>
+
+    <section>
+      <h2>The Spec</h2>
+      <p>We start with an array of 2134 values, and shuffle it to create 200 unique sequences.</p>
+      <p>We import an excerpt of the d3 library to do basis interpolation for each sequence.</p>
+      <p>We dynamically render an SVG for each sequence, using the interpolated line as data</p>
+    </section>
+
+    <section>
+      <h2>The Implementations</h2>
+      <p><a href="https://github.com/ybot1122/react-flux-web-workers">source</a></p>
+      <p><span>SEQUENTIAL</span> - the interpolation step will block</p>
+      <p><span>ASYNC</span> - interpolation step is wrapped in a setTimeout()</p>
+      <p><span>WEBWORKERS</span> - the store invokes the web worker functions using the worker API</p>
+    </section>
+
+    <section>
+      <h2>WPT Results</h2>
+      <p>TBD</p>
+    </section>
+
+    <section>
+      <h2>Known Confounding Conditions</h2>
+      <p>Each implementation generates its own set of 200 sequences. They should all be using the same set.</p>
+    </section>
+  </body>
+</html>
