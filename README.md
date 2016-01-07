@@ -1,6 +1,4 @@
 # react-flux-store-examples
 Some sample patterns and implementations for implementing dispatchers and stores in Flux architecture
 
-for now, build with:
-browserify -t [ babelify --presets [ react ] ] workers/webworker.js > workers/worker.js
-browserify -t [ babelify --presets [ react ] ] main.js > bundle.js
+Just run the build.sh script. It will generate a build/ directory which contains async/, sequential/, and webworker/ subdirectories.
