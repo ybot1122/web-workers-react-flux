@@ -4,7 +4,7 @@
 
 'use strict';
 
-const d3 = require('./d3.min.js');
+const line = require('./d3_line.js');
 
 module.exports = {
     calculateMyCurve: function(initialData) {
@@ -38,7 +38,7 @@ module.exports = {
             data.push({x: i, y: rawData[i].value});
         }
 
-        const line = d3.svg.line().interpolate('basis')
+        const interpolatedLine = line.interpolate('basis')
             .x(function (d) {
                 return d.x
             })
@@ -46,6 +46,6 @@ module.exports = {
                 return d.y
             });
 
-        return line(data);
+        return interpolatedLine(data);
     }
 }
