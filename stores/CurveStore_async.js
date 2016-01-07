@@ -19,16 +19,7 @@ class CurveStore extends Store {
     super();
     console.log('USING ASYNC STORE');
     self = this;
-    self._worker = new Worker("workers/worker.js");
     self._cache = {};
-    // add listener to worker for receiving calcuations
-    self._worker.addEventListener('message', function(e) {
-      var data = JSON.parse(e.data);
-      var id = data.id;
-      var result = data.result;
-      self._cache[id] = result;
-      self._emitChange();
-    });
   }
 
   _onDispatch(actionType, payload) {
